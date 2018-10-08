@@ -34,7 +34,6 @@
   "bugs": {
     "url": "https://github.com/history-page/history-be/issues"
   },
-  "homepage": "https://github.com/history-page/history-be#readme",
   "dependencies": {
     "antd": "^3.4.4",
     "aws-sdk": "^2.252.1",
