@@ -6,7 +6,7 @@
   "proxy": "http://localhost:9009",
   "scripts": {
     "precommit": "lint-staged",
-    "start": "node ./server/production-server.js",
+    "start": "mkdir download ; node ./server/production-server.js",
     "client": "npm run locator ; react-app-rewired start",
     "dev:server": "nodemon ./server/dev-server.js",
     "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run client\"",
