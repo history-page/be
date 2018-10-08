@@ -1,0 +1,93 @@
+{
+  "name": "history-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "proxy": "http://localhost:9009",
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "node ./server/production-server.js",
+    "client": "npm run locator ; react-app-rewired start",
+    "dev:server": "nodemon ./server/dev-server.js",
+    "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run client\"",
+    "kill": "npm run kill:server && npm run kill:client",
+    "kill:server": "pkill -15 -f -o bin/nodemon;kill $(lsof -i:9009 -sTCP:LISTEN -t);echo All dev-server should be killed",
+    "kill:client": "pkill -15 -f -o bin/nodemon;kill $(lsof -i:3000 -sTCP:LISTEN -t);echo All dev-server should be killed",
+    "build": "ROUTER_BASENAME=be npm run locator ; react-app-rewired build",
+    "locator": "node locator",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "node_modules/.bin/eslint src/",
+    "lint-fix": "node_modules/.bin/eslint src/ --fix",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "prettier": "prettier  --no-semi --single-quote --write 'src/**/*.js'",
+    "heroku-postbuild": "npm run build",
+    "deploy": "npm run build ; gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/history-page/history-be.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/history-page/history-be/issues"
+  },
+  "homepage": "https://github.com/history-page/history-be#readme",
+  "dependencies": {
+    "antd": "^3.4.4",
+    "aws-sdk": "^2.252.1",
+    "draft-js": "^0.10.5",
+    "firebase": "^5.4.0",
+    "fs": "0.0.1-security",
+    "medium-draft": "^0.6.0-beta1",
+    "multiparty": "^4.1.4",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.3.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.4",
+    "@storybook/addon-links": "^3.4.4",
+    "@storybook/addons": "^3.4.4",
+    "@storybook/cli": "^3.4.4",
+    "@storybook/react": "^3.4.4",
+    "babel-core": "^6.26.3",
+    "babel-plugin-import": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "concurrently": "^3.5.1",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "firebase-admin": "^5.12.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.2",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.12.1",
+    "push-dir": "^0.4.1",
+    "react-app-rewired": "^1.5.2",
+    "redux-devtools-extension": "^2.13.2"
+  },
+  "engines": {
+    "node": "10.0.0",
+    "npm": "5.3.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "npm run prettier",
+      "npm run lint-fix",
+      "git add"
+    ]
+  }
+}

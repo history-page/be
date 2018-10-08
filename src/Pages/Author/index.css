@@ -1,0 +1,12 @@
+.author-edit-form {
+  width: 80%;
+  max-width: 400px;
+}
+.author-edit-form-wrapper {
+  display: flex;
+}
+.author-edit-preview {
+  margin: 0 20px;
+  width: 200px;
+  height: 200px;
+}
